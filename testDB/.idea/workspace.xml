@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="352b6c56-eacf-475d-bc31-fd46c876c97b" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1tTTIfuYzzmSfJ4mby30Vm0e9h9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="java.sql.Driver" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Загрузки/Новая папка (3)/jaybird-full-4.0.3.java7.jar!/" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Repository\pipeHanbookBD\testDB\lib" />
+      <recent name="E:\Repository\pipeHanbookBD\testDB\src\com\company" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Repository\pipeHanbookBD\testDB\src" />
+      <recent name="E:\Repository\pipeHanbookBD\testDB\src\com\company" />
+      <recent name="E:\Repository\pipeHanbookBD\testDB\out\production\testDB\com\company" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="testDB" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="352b6c56-eacf-475d-bc31-fd46c876c97b" name="Default Changelist" comment="" />
+      <created>1622792000489</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1622792000489</updated>
+      <workItem from="1622792003103" duration="14287000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="376" y="390" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1622798243206">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="376" y="390" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/-1920.465.1920.1040@0.0.2560.1400" timestamp="1622798243206" />
+    <state x="910" y="389" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1622796892925">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="910" y="389" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.2560.1400/-1920.465.1920.1040@0.0.2560.1400" timestamp="1622796892925" />
+    <state x="989" y="319" key="#jaybird-full-4.0.3.java11.jar" timestamp="1622792862653">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="989" y="319" key="#jaybird-full-4.0.3.java11.jar/0.0.2560.1400/-1920.465.1920.1040@0.0.2560.1400" timestamp="1622792862653" />
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1622798359318">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400/-1920.465.1920.1040@0.0.2560.1400" timestamp="1622798359318" />
+    <state width="2517" height="492" key="GridCell.Tab.0.bottom" timestamp="1622820677479">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.465.1920.1040@0.0.2560.1400" timestamp="1622820677479" />
+    <state width="2517" height="492" key="GridCell.Tab.0.center" timestamp="1622820677479">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.465.1920.1040@0.0.2560.1400" timestamp="1622820677479" />
+    <state width="2517" height="492" key="GridCell.Tab.0.left" timestamp="1622820677479">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.465.1920.1040@0.0.2560.1400" timestamp="1622820677479" />
+    <state width="2517" height="492" key="GridCell.Tab.0.right" timestamp="1622820677479">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.465.1920.1040@0.0.2560.1400" timestamp="1622820677479" />
+    <state width="2517" height="492" key="GridCell.Tab.1.bottom" timestamp="1622820677480">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.1.bottom/0.0.2560.1400/-1920.465.1920.1040@0.0.2560.1400" timestamp="1622820677480" />
+    <state width="2517" height="492" key="GridCell.Tab.1.center" timestamp="1622820677479">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.1.center/0.0.2560.1400/-1920.465.1920.1040@0.0.2560.1400" timestamp="1622820677479" />
+    <state width="2517" height="492" key="GridCell.Tab.1.left" timestamp="1622820677479">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.1.left/0.0.2560.1400/-1920.465.1920.1040@0.0.2560.1400" timestamp="1622820677479" />
+    <state width="2517" height="492" key="GridCell.Tab.1.right" timestamp="1622820677480">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.1.right/0.0.2560.1400/-1920.465.1920.1040@0.0.2560.1400" timestamp="1622820677480" />
+    <state x="515" y="378" key="SettingsEditor" timestamp="1622798392748">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="515" y="378" key="SettingsEditor/0.0.2560.1400/-1920.465.1920.1040@0.0.2560.1400" timestamp="1622798392748" />
+  </component>
+</project>
