@@ -3,10 +3,13 @@ package com.company.DataBase;
 
 import com.company.DataBase.CustomTypes.DataTable;
 import com.company.DataBase.CustomTypes.UniversalData;
+import org.firebirdsql.extern.decimal.Decimal;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -52,7 +55,7 @@ public class DataBaseExecutor {
     public DataBaseExecutor() throws ClassNotFoundException, SQLException { //если не указано иначе, класс будет работать с трубами со стандартными настройками
 
         numOfDataTableFields = 99; //количество столбцов определяется само, 99 стоит что бы проверить (редко в таблицах 99 столбцов) алгоритм определения количества столбцов
-        databaseURL = "jdbc:firebirdsql:LOCALHOST:E:/DataCrypt/DataTube/neoFile.FDB?charSet=UTF-8"; //путь к базе данных
+        databaseURL = "jdbc:firebirdsql:LOCALHOST:D:/DataCrypt/DataTube/neoFile.FDB?charSet=UTF-8"; //путь к базе данных
         user = "sysdba";
         password = "masterkey";
         driverName = "org.firebirdsql.jdbc.FBDriver";
@@ -65,7 +68,7 @@ public class DataBaseExecutor {
 
 
         numOfDataTableFields = 99; //количество столбцов определяется само, 99 стоит что бы проверить (редко в таблицах 99 столбцов) алгоритм определения количества столбцов
-        databaseURL = "jdbc:firebirdsql:LOCALHOST:E:/DataCrypt/DataTube/neoFile.FDB?charSet=UTF-8"; //путь к базе данных
+        databaseURL = "jdbc:firebirdsql:LOCALHOST:D:/DataCrypt/DataTube/neoFile.FDB?charSet=UTF-8"; //путь к базе данных
         user = "sysdba";
         password = "masterkey";
         driverName = "org.firebirdsql.jdbc.FBDriver";
@@ -295,6 +298,66 @@ public class DataBaseExecutor {
 
 
     }
+
+    public void updateDataRec(String keyFirldValue, String keyFieldName, String fieldToUpdate, BigDecimal newValue) //изменение в базе данных одной строки (записи)
+            throws IOException {
+        try {
+
+            Class.forName(driverName);
+            Connection connection = DriverManager.getConnection(databaseURL, user, password);
+            Statement statement = connection.createStatement();
+
+            String SQL = "UPDATE " + tableName + " SET " + fieldToUpdate + " = '" + newValue + "' WHERE " + keyFieldName + " = " + keyFirldValue;
+            System.out.println(SQL);
+            int x = statement.executeUpdate(SQL);
+            if (x == 1) {
+
+                System.out.println("Data update successfully " + keyFieldName + "=[" + keyFirldValue + "]");
+            }
+
+            statement.close();
+            connection.close();
+
+
+        } catch (Exception e) {
+
+            System.out.println("Request rejected. " + keyFieldName + "[" + keyFirldValue + "] can`t be updated");
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void updateDataRec(String keyFirldValue, String keyFieldName, String fieldToUpdate, Double newValue) //изменение в базе данных одной строки (записи)
+            throws IOException {
+        try {
+
+            Class.forName(driverName);
+            Connection connection = DriverManager.getConnection(databaseURL, user, password);
+            Statement statement = connection.createStatement();
+
+            String SQL = "UPDATE " + tableName + " SET " + fieldToUpdate + " = '" + newValue + "' WHERE " + keyFieldName + " = " + keyFirldValue;
+            System.out.println(SQL);
+            int x = statement.executeUpdate(SQL);
+            if (x == 1) {
+
+                System.out.println("Data update successfully " + keyFieldName + "=[" + keyFirldValue + "]");
+            }
+
+            statement.close();
+            connection.close();
+
+
+        } catch (Exception e) {
+
+            System.out.println("Request rejected. " + keyFieldName + "[" + keyFirldValue + "] can`t be updated");
+            e.printStackTrace();
+        }
+
+
+    }
+
+
 
     public void deleteDataRec(String keyFieldName, String keyFieldValue) //удаление в базе данных одной строки (записи)
             throws IOException {

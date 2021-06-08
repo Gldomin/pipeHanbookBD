@@ -15,7 +15,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../Загрузки/Новая папка (3)/jaybird-full-4.0.3.java7.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../coding/lib/jaybird-full-4.0.3.java7.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
