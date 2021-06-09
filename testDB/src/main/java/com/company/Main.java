@@ -11,18 +11,18 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        String keyValue1="1.0";
-        String keyValue2="2.0";
-        String keyValue3="3.0";
-        String pValueString="60.123400";
-        double pValueDouble=60.123400;
-        BigDecimal pValueDecimal= BigDecimal.valueOf(60.123400);
+        String keyValue1="1";
+        String keyValue2="2";
+        String keyValue3="3";
+        String pValueString="60.123456";
+        double pValueDouble=60.123456;
+        BigDecimal pValueDecimal= BigDecimal.valueOf(60.123456);
         String viscosity="30.0";
         String keyName="t";
         Scanner in = new Scanner(System.in);
         while (true){ //надо попробовать с decimalType (test datatable)
         try {
-            DataBaseExecutor exe = new DataBaseExecutor("water");
+            DataBaseExecutor exe = new DataBaseExecutor("test");
             System.out.println("TableName:"+exe.getTableName());
             System.out.println("Names:"+exe.getNames());
 
@@ -39,9 +39,25 @@ public class Main {
             pValueString=in.nextLine();
         //System.out.print("Input value [viscosity].. ");
         //viscosity=in.nextLine();
-        exe.updateDataRec(keyName,keyValue1,"p2",pValueString.toString());   //String
-        exe.updateDataRec(keyName,keyValue2,"p2",pValueDouble);                    //Double
-        exe.updateDataRec(keyName,keyValue3,"p2",pValueDecimal);                    //Decimal
+            pValueString="60.123456";
+
+            exe.updateDataRec(keyName,keyValue1,"stringp",pValueString.toString());   //String
+            exe.updateDataRec(keyName,keyValue2,"stringp",pValueDouble);                    //Double
+            exe.updateDataRec(keyName,keyValue3,"stringp",pValueDecimal);                    //Decimal
+
+            exe.updateDataRec(keyName,keyValue1,"decimalp",pValueString.toString());   //String
+            exe.updateDataRec(keyName,keyValue2,"decimalp",pValueDouble);                    //Double
+            exe.updateDataRec(keyName,keyValue3,"decimalp",pValueDecimal);                    //Decimal
+
+            exe.updateDataRec(keyName,keyValue1,"doublep",pValueString.toString());   //String
+            exe.updateDataRec(keyName,keyValue2,"doublep",pValueDouble);                    //Double
+            exe.updateDataRec(keyName,keyValue3,"doublep",pValueDecimal);                    //Decimal
+
+            exe.updateDataRec(keyName,keyValue1,"numericp",pValueString.toString());   //String
+            exe.updateDataRec(keyName,keyValue2,"numericp",pValueDouble);                    //Double
+            exe.updateDataRec(keyName,keyValue3,"numericp",pValueDecimal);                    //Decimal
+
+
         //exe.directSQLRequest("update ");
         } catch (ClassNotFoundException e) {	System.out.println("exception catched");
             e.printStackTrace();
