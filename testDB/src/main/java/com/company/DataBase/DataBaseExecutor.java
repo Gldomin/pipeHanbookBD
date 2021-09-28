@@ -79,6 +79,21 @@ public class DataBaseExecutor {
         metaUpdate(); //метаданные на момент создания включали только названия столбцов и их количество - эти параметры не меняются в процессе работы с базой данных
     }
 
+    public DataBaseExecutor(String dataTableName, String databaseURL) throws ClassNotFoundException, SQLException { //стандартные настройки, но для разных таблиц данных
+
+
+        numOfDataTableFields = 99; //количество столбцов определяется само, 99 стоит что бы проверить (редко в таблицах 99 столбцов) алгоритм определения количества столбцов
+        this.databaseURL = databaseURL; //путь к базе данных
+        user = "sysdba";
+        password = "masterkey";
+        driverName = "org.firebirdsql.jdbc.FBDriver";
+
+
+        tableName = dataTableName; //другое название таблицы данных
+
+        metaUpdate(); //метаданные на момент создания включали только названия столбцов и их количество - эти параметры не меняются в процессе работы с базой данных
+    }
+
 
     void DataBaseExecutor(int numOfDataTableFields, String databaseURL, String dataTableName, String user, String password, String driverName) { //полная кастомизация класса
 
@@ -100,7 +115,7 @@ public class DataBaseExecutor {
 
         names.clear();
         for (int i = 0; i < numOfDataTableFields; i++) { //пробежка по всем колонкам
-            names.add((metaRes.getColumnName(i + 1)).toLowerCase()); //получение имен столбцов //todo ЛоверКейс панацея ли?
+            names.add((metaRes.getColumnName(i + 1))); //получение имен столбцов //todo ЛоверКейс панацея ли? //удалил Ловеркейс
         }
         statement.close();
         connection.close();
@@ -138,9 +153,13 @@ public class DataBaseExecutor {
 
 
             String query = compositeInsertRequest(names, tableName); //универсальный запрос
+           // String query = "Insert INTO " + tableName + "(T, DENSITY, VISC_DNC, HT_CAPACITY)"+ "VALUES" + "('1','1','1','1')";
+            System.out.println("Names is __________"+names);
             PreparedStatement pstmt = connection.prepareStatement(query);
             for (int i = 0; i < record.getNames().size(); i++) { //создание связи используя каждый столбец
-                pstmt.setString(i + 1, record.get(names.get(i)).toString());
+                System.out.println("Tempus="+names.get(i));
+                String tempus =record.get(names.get(i));
+                pstmt.setString(i + 1, tempus.toString());
                 recordedData.add(record.get(names.get(i)).toString());
             }
 

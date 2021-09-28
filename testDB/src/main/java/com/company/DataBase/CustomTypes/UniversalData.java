@@ -23,7 +23,7 @@ public class UniversalData {
 
         for (int i = 0; i < fieldsNames.size(); i++) {
 
-            data.put((String) fieldsNames.get(i), "value has not set");
+            data.put((String) fieldsNames.get(i), null);
         }
     }
 
