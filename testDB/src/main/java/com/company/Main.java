@@ -24,8 +24,14 @@ import org.apache.poi.ss.usermodel.Row;
 public class Main {
     static UniversalData testData;
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
-     try {
-            DataBaseExecutor DB= new DataBaseExecutor("WATER_TAB","jdbc:firebirdsql:LOCALHOST:D:/Desktop/neoFile.FDB?charSet=UTF-8");
+
+    }
+
+    public static void parcingFromExcel ()
+    {
+        //метод парсит из указанной таблицы данных с указанной БД firebird. ВАЖНО: первый столбец является id и должен быть без запятой в Экселе. При использовании в других случаях, нужно менять названия столбцов и их количество. И сверяться с БД
+        try {
+            DataBaseExecutor DB= new DataBaseExecutor("WATER_TABLE","jdbc:firebirdsql:LOCALHOST:D:/Desktop/neoFile.FDB?charSet=UTF-8");
 
             ArrayList fieldsNames = new ArrayList();
             fieldsNames.add("T");
@@ -36,105 +42,109 @@ public class Main {
 
 
 
-        // Read XSL file
-        FileInputStream inputStream = null;
-        try {
-            inputStream = new FileInputStream(new File("D:/Desktop/HandBookDataOldedTest.xls"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+            // Read XSL file
+            FileInputStream inputStream = null;
+            try {
+                inputStream = new FileInputStream(new File("D:/Desktop/HandBookDataOlded.xls"));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
 
-        // Get the workbook instance for XLS file
-        HSSFWorkbook workbook = null;
-       try {
-            workbook = new HSSFWorkbook(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            // Get the workbook instance for XLS file
+            HSSFWorkbook workbook = null;
+            try {
+                workbook = new HSSFWorkbook(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        // Get first sheet from the workbook
-        HSSFSheet sheet = workbook.getSheetAt(0);
+            // Get first sheet from the workbook
+            HSSFSheet sheet = workbook.getSheetAt(0);
 
-        // Get iterator to all the rows in current sheet
-        Iterator<Row> rowIterator = sheet.iterator();
+            // Get iterator to all the rows in current sheet
+            Iterator<Row> rowIterator = sheet.iterator();
 
-        while (rowIterator.hasNext()) {
-            Row row = rowIterator.next();
-            // Get iterator to all cells of current row
-            Iterator<Cell> cellIterator = row.cellIterator();
+            while (rowIterator.hasNext()) {
+                Row row = rowIterator.next();
+                // Get iterator to all cells of current row
+                Iterator<Cell> cellIterator = row.cellIterator();
 
-            while (cellIterator.hasNext()) {
-                Cell cell = cellIterator.next();
+                while (cellIterator.hasNext()) {
+                    Cell cell = cellIterator.next();
 
-                // Change to getCellType() if using POI 4.x
-                CellType cellType = cell.getCellType();
+                    // Change to getCellType() if using POI 4.x
+                    CellType cellType = cell.getCellType();
 
-                switch (cellType) {
-                    case _NONE:
+                    switch (cellType) {
+                        case _NONE:
 //                        System.out.print("");
 //                        System.out.print("\t");
-                        break;
-                    case BOOLEAN:
+                            break;
+                        case BOOLEAN:
 //                        System.out.print(cell.getBooleanCellValue());
 //                        System.out.print("\t");
-                        break;
-                    case BLANK:
+                            break;
+                        case BLANK:
 //                        System.out.print("");
 //                        System.out.print("\t");
-                        break;
-                    case FORMULA:
-                        // Formula
+                            break;
+                        case FORMULA:
+                            // Formula
 //                        System.out.print(cell.getCellFormula());
 //                        System.out.print("\t");
 //
 //                        FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
-                        // Print out value evaluated by formula
+                            // Print out value evaluated by formula
 //                        System.out.print(evaluator.evaluate(cell).getNumberValue());
-                        break;
-                    case NUMERIC:
+                            break;
+                        case NUMERIC:
 //                        System.out.print(cell.getNumericCellValue());
 //                        System.out.print("\t");
-                        break;
-                    case STRING:
+                            break;
+                        case STRING:
 
-                        System.out.print(cell.getAddress() + " has   "+ cell.getStringCellValue());
-                       if (cell.getRowIndex()>0){
+                            System.out.print(cell.getAddress() + " has   "+ cell.getStringCellValue());
+                            if (cell.getRowIndex()>1){
 
-                           fieldsValues.add(cell.getStringCellValue());
-                        //tempData.set((String) fieldsNames.get(cell.getColumnIndex()), cell.getStringCellValue());
-                        //заполняет Запись пока не дойдет до 4-го столбца, затем записывает запись в БД, а потом перезаписывает поверх старых данных новую запись. это повторяется
-                        if(cell.getColumnIndex()==3) {
-                            System.out.println();
-                            System.out.println("I am ColumnIndex 3!");
-                            System.out.println("FV__"+fieldsValues);
-                            System.out.println("FN__"+fieldsNames);
-                            UniversalData tempData = new UniversalData(fieldsNames,fieldsValues);
-                            System.out.println();
-                            System.out.println("TempDataNames:          "+tempData.getNames());
-                            System.out.println("TempDataValues:          "+tempData.getValues());
-                            DB.insertDataRec(tempData);
-                            System.out.print( " NEW TAB ");
-                            fieldsValues.clear();
-                        }
-                       }
-                        System.out.print("\t");
-                        break;
-                    case ERROR:
-                        System.out.print("!");
-                        System.out.print("\t");
-                        break;
+                                fieldsValues.add(cell.getStringCellValue());
+                                System.out.println();
+                                System.out.println("getted value: "+ cell.getStringCellValue());
+                                //tempData.set((String) fieldsNames.get(cell.getColumnIndex()), cell.getStringCellValue());
+                                //заполняет Запись пока не дойдет до 4-го столбца, затем записывает запись в БД, а потом перезаписывает поверх старых данных новую запись. это повторяется
+                                if(cell.getColumnIndex()==3) {
+                                    System.out.println();
+                                    System.out.println("I am ColumnIndex 3!");
+                                    System.out.println("FV__"+fieldsValues);
+                                    System.out.println("FN__"+fieldsNames);
+                                    UniversalData tempData = new UniversalData(fieldsNames,fieldsValues);
+                                    System.out.println();
+                                    System.out.println("TempDataNames:          "+tempData.getNames());
+                                    System.out.println("TempDataValues:          "+tempData.getValues());
+                                    DB.insertDataRec(tempData);
+                                    System.out.print( " NEW TAB ");
+                                    fieldsValues.clear();
+                                }
+                            }
+                            System.out.print("\t");
+                            break;
+                        case ERROR:
+                            System.out.print("!");
+                            System.out.print("\t");
+                            break;
+                    }
+
                 }
-
+                System.out.println("");
+                //testBD();
             }
-            System.out.println("");
-            //testBD();
-        }
 
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
 
