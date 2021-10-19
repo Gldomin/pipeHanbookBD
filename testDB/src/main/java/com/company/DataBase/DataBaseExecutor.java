@@ -376,7 +376,21 @@ public class DataBaseExecutor {
 
     }
 
+    public void updateDataRec(int keyFirldValue, String keyFieldName, String fieldToUpdate, double newValue) throws ClassNotFoundException, SQLException //изменение в базе данных одной строки (записи)
+    {
 
+        Class.forName(driverName);
+        Connection connection = DriverManager.getConnection(databaseURL, user, password);
+        Statement statement = connection.createStatement();
+
+        String SQL = "UPDATE " + tableName + " SET " + fieldToUpdate + " = '" + newValue + "' WHERE " + keyFieldName + " = " + keyFirldValue;
+        System.out.println(SQL);
+        int x = statement.executeUpdate(SQL);
+        if (x == 1) {
+
+            System.out.println("Data update successfully " + keyFieldName + "=[" + keyFirldValue + "]");
+        }
+    }
 
     public void deleteDataRec(String keyFieldName, String keyFieldValue) //удаление в базе данных одной строки (записи)
             throws IOException {
@@ -425,4 +439,6 @@ public class DataBaseExecutor {
                 }
 
             }
+
+
 }

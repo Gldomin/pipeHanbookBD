@@ -24,6 +24,7 @@ import org.apache.poi.ss.usermodel.Row;
 public class Main {
     static UniversalData testData;
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
+        parcingFromExcel();
 
     }
 
@@ -35,9 +36,10 @@ public class Main {
 
             ArrayList fieldsNames = new ArrayList();
             fieldsNames.add("T");
-            fieldsNames.add("DENSITY");
-            fieldsNames.add("VISC_DNC");
-            fieldsNames.add("HT_CAPACITY");
+            //fieldsNames.add("DENSITY");
+            //fieldsNames.add("VISC_DNC");
+            //fieldsNames.add("HT_CAPACITY");
+            fieldsNames.add("VISC_KNM");
             ArrayList fieldsValues = new ArrayList();
 
 
@@ -98,13 +100,19 @@ public class Main {
 //                        System.out.print(evaluator.evaluate(cell).getNumberValue());
                             break;
                         case NUMERIC:
-//                        System.out.print(cell.getNumericCellValue());
-//                        System.out.print("\t");
+                            if (cell.getRowIndex()>1){ //обновление уже созданной таблицы нумерик-значениями таблицы
+                                if (cell.getColumnIndex()==4)
+                                {
+                                    DB.updateDataRec(cell.getRowIndex()-2,"T","VISC_KNM",cell.getNumericCellValue());
+
+                                }
+
+                            }
                             break;
                         case STRING:
 
                             System.out.print(cell.getAddress() + " has   "+ cell.getStringCellValue());
-                            if (cell.getRowIndex()>1){
+                          /*  if (cell.getRowIndex()>1){
 
                                 fieldsValues.add(cell.getStringCellValue());
                                 System.out.println();
@@ -124,7 +132,7 @@ public class Main {
                                     System.out.print( " NEW TAB ");
                                     fieldsValues.clear();
                                 }
-                            }
+                            }*/
                             System.out.print("\t");
                             break;
                         case ERROR:
@@ -143,8 +151,6 @@ public class Main {
             e.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
 
