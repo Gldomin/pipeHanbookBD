@@ -22,7 +22,6 @@ import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 
 public class Main {
-    static UniversalData testData;
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
         parcingFromExcel();
 
@@ -32,22 +31,32 @@ public class Main {
     {
         //метод парсит из указанной таблицы данных с указанной БД firebird. ВАЖНО: первый столбец является id и должен быть без запятой в Экселе. При использовании в других случаях, нужно менять названия столбцов и их количество. И сверяться с БД
         try {
-            DataBaseExecutor DB= new DataBaseExecutor("WATER_TABLE","jdbc:firebirdsql:LOCALHOST:D:/Desktop/neoFile.FDB?charSet=UTF-8");
+            DataBaseExecutor DB= new DataBaseExecutor("STEAM_TABLE","jdbc:firebirdsql:LOCALHOST:D:/Desktop/neoFile.FDB?charSet=UTF-8");
 
             ArrayList fieldsNames = new ArrayList();
-            fieldsNames.add("T");
-            //fieldsNames.add("DENSITY");
-            //fieldsNames.add("VISC_DNC");
-            //fieldsNames.add("HT_CAPACITY");
-            fieldsNames.add("VISC_KNM");
+            fieldsNames.add("id");
+            fieldsNames.add("Abs_Pressure");
+            fieldsNames.add("Bolling_point");
+            fieldsNames.add("Spec_volume");
+            fieldsNames.add("Density");
+            fieldsNames.add("Spec_enthalpy_liquid");
+            fieldsNames.add("Spec_enthalpy_steam");
+            fieldsNames.add("Latent_heat");
+            fieldsNames.add("Spec_heat");
+            fieldsNames.add("Dnc_viscosity");
+
+            for (int i =0; i<fieldsNames.size();i++) //Все столбцы должны быть капсом
+            {
+               String tempus = (String) fieldsNames.get(i);
+               fieldsNames.set(i,tempus.toUpperCase());
+            }
+
             ArrayList fieldsValues = new ArrayList();
-
-
 
             // Read XSL file
             FileInputStream inputStream = null;
             try {
-                inputStream = new FileInputStream(new File("D:/Desktop/HandBookDataOlded.xls"));
+                inputStream = new FileInputStream(new File("D:/Desktop/HandBookDataSteam.xls"));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -100,19 +109,29 @@ public class Main {
 //                        System.out.print(evaluator.evaluate(cell).getNumberValue());
                             break;
                         case NUMERIC:
-                            if (cell.getRowIndex()>1){ //обновление уже созданной таблицы нумерик-значениями таблицы
-                                if (cell.getColumnIndex()==4)
+                            System.out.print(cell.getAddress() + " is  NUMERIC and has "+ cell.getNumericCellValue());
+                            if (cell.getRowIndex()>1){ //
+                                if (cell.getColumnIndex()==0){
+                                    fieldsValues.add(String.valueOf((int)cell.getNumericCellValue()));
+                                } else {
+                                    fieldsValues.add(String.valueOf(cell.getNumericCellValue()));
+                                }
+                                if (cell.getColumnIndex()==9)
                                 {
-                                    DB.updateDataRec(cell.getRowIndex()-2,"T","VISC_KNM",cell.getNumericCellValue());
-
+                                    UniversalData tempData = new UniversalData(fieldsNames,fieldsValues);
+                                    DB.insertDataRec(tempData);
+                                    System.out.print( " NEW TAB ");
+                                    fieldsValues.clear();
                                 }
 
                             }
+
                             break;
                         case STRING:
-
                             System.out.print(cell.getAddress() + " has   "+ cell.getStringCellValue());
-                          /*  if (cell.getRowIndex()>1){
+
+
+                            /*  if (cell.getRowIndex()>1){
 
                                 fieldsValues.add(cell.getStringCellValue());
                                 System.out.println();
@@ -151,6 +170,8 @@ public class Main {
             e.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
 

@@ -154,11 +154,17 @@ public class DataBaseExecutor {
 
             String query = compositeInsertRequest(names, tableName); //универсальный запрос
            // String query = "Insert INTO " + tableName + "(T, DENSITY, VISC_DNC, HT_CAPACITY)"+ "VALUES" + "('1','1','1','1')";
+            System.out.println();
             System.out.println("Names is __________"+names);
+            System.out.println("Values is __________"+record.getValues());
             PreparedStatement pstmt = connection.prepareStatement(query);
             for (int i = 0; i < record.getNames().size(); i++) { //создание связи используя каждый столбец
                 System.out.println("Tempus="+names.get(i));
                 String tempus =record.get(names.get(i));
+
+              //  System.out.println("TempusValue="+tempus ); //проверка на Темпус, если вылазит NullPointerException, важно что бы все названия полей были капсом в мета-аптейдете.
+              //   System.out.println("Test="+record.get("id"));
+
                 pstmt.setString(i + 1, tempus.toString());
                 recordedData.add(record.get(names.get(i)).toString());
             }
